@@ -15,6 +15,7 @@
  */
 
 import com.russhwolf.settings.build.standardConfiguration
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     id("com.android.library")
@@ -27,6 +28,9 @@ plugins {
 standardConfiguration()
 
 kotlin {
+    targets.getByName<KotlinNativeTarget>("linuxX64") {
+        compilations["main"].cinterops.create("qdbm")
+    }
     sourceSets {
         commonMain {
             dependencies {
